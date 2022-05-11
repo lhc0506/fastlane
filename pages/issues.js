@@ -35,7 +35,6 @@ const issues = ({ issues }) => {
 export const getStaticProps = async ({ context }) => {
   const res = await fetch(process.env.NEXT_PUBLIC_ISSUES_API);
   const issues = await res.json();
-  console.log(11111)
   if (!res) {
     return {
       notFound: true,
