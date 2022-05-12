@@ -1,7 +1,6 @@
-
 import Nav from "./Nav";
 
-const Layout = ({ children }) => {
+export default function Layout({ children }) {
   return (
     <>
       <Nav />
@@ -11,5 +10,3 @@ const Layout = ({ children }) => {
     </>
   )
 }
-
-export default Layout;

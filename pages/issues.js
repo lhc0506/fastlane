@@ -1,19 +1,28 @@
+import { useEffect } from "react";
 import HeadInfo from "../components/HeadInfo";
-import Image from "next/image";
+import useStore from "../lib/store";
+import IssueBox from "../components/IssueBox";
 
-const issues = ({ issues }) => {
-  console.log(issues)
+export default function Issues({ recivedIssues }) {
+  const { issues, updateIssue } = useStore()
+  const sortedIssues = [...issues]
+  sortedIssues.sort((a, b) => b.comments - a.comments);
+
+  useEffect(() => {
+    updateIssue(recivedIssues);
+  }, [recivedIssues]);
+
 
   return (
     <div>
       <HeadInfo title="Get issuses" />
-      <h1>
-        issues
+      <h1 className="mb-2">
+        isssues
       </h1>
-      <ul>
-        {issues.map(issue => (
-          <li key={issue.id}>
-            <Image src={issue.user.avatar_url} width={100} height={100} alt={issue.title} />
+      <ul className="border-collapse">
+        {sortedIssues.map(issue => (
+          <li key={issue.id} className="border border-soild border-grey">
+            <IssueBox number={issue.number} comments={issue.comments} title={issue.title} createdAt={issue.created_at} />
           </li>
         ))}
       </ul>
@@ -22,7 +31,7 @@ const issues = ({ issues }) => {
 }
 
 // export const getServerSideProps = async () => {
-//   const res = await fetch("https://api.github.com/repos/facebook/create-react-app/issues");
+//   const res = await fetch("https://api.github.com/repos/facebook/create-react-app/recivedIssues");
 //   const posts = await res.json();
 
 //   return {
@@ -34,7 +43,7 @@ const issues = ({ issues }) => {
 
 export const getStaticProps = async ({ context }) => {
   const res = await fetch(process.env.NEXT_PUBLIC_ISSUES_API);
-  const issues = await res.json();
+  const recivedIssues = await res.json();
   if (!res) {
     return {
       notFound: true,
@@ -43,10 +52,8 @@ export const getStaticProps = async ({ context }) => {
 
   return {
     props: {
-      issues
+      recivedIssues
     },
     revalidate: 20,
   };
 };
-
-export default issues

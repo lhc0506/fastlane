@@ -1,6 +1,6 @@
 import Head from 'next/head';
 
-const HeadInfo = ({ title, keyword, contents }) => {
+export default function HeadInfo({ title, keyword, contents }) {
   return (
     <Head>
       <title>{title}</title>
@@ -15,5 +15,3 @@ HeadInfo.defaultProps = {
   keyword: "FastLane assignment",
   contents: "FastLane Assignment made by Ho Chan Lee"
 };
-
-export default HeadInfo;
