@@ -4,8 +4,8 @@ import useStore from "../lib/store";
 import IssueBox from "../components/IssueBox";
 
 export default function Issues({ recivedIssues }) {
-  const { issues, updateIssue } = useStore()
-  const sortedIssues = [...issues]
+  const { issues, updateIssue } = useStore();
+  const sortedIssues = [...issues];
   sortedIssues.sort((a, b) => b.comments - a.comments);
 
   useEffect(() => {
@@ -27,19 +27,8 @@ export default function Issues({ recivedIssues }) {
         ))}
       </ul>
     </div>
-  )
+  );
 }
-
-// export const getServerSideProps = async () => {
-//   const res = await fetch("https://api.github.com/repos/facebook/create-react-app/recivedIssues");
-//   const posts = await res.json();
-
-//   return {
-//     props: {
-//       posts
-//     }
-//   };
-// };
 
 export const getStaticProps = async ({ context }) => {
   const res = await fetch(process.env.NEXT_PUBLIC_ISSUES_API);
