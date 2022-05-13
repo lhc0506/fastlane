@@ -15,9 +15,9 @@ export default function Issues({ recivedIssues }) {
 
   return (
     <div>
-      <HeadInfo title="Get issuses" />
+      <HeadInfo title="Get issuses" keyword="Git Hub Issues" contents="Get Git Hub Issues" />
       <h1 className="mb-2">
-        isssues
+        issues
       </h1>
       <ul className="border-collapse">
         {sortedIssues.map(issue => (

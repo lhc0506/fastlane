@@ -2,7 +2,6 @@ import Link from 'next/link';
 
 export default function Nav() {
   return (
-    // <nav className={navStyles.nav}>
     <nav className="bg-blue pt-0.5 pr-1 ">
       <ul className="flex">
         <li className="mr-1 text-white">
