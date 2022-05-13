@@ -1,6 +1,6 @@
 import Image from "next/image";
 
-function IssueBox({ title, comments, number, createdAt }) {
+export default function IssueBox({ title, comments, number, createdAt }) {
   const diffTime = (new Date().getTime() - new Date(createdAt).getTime()) / 1000 / 60;
   let time = createdAt.slice(0, 10);
   if (diffTime < 1) {
@@ -24,7 +24,5 @@ function IssueBox({ title, comments, number, createdAt }) {
         </div>
       </div>
     </div>
-  )
+  );
 }
-
-export default IssueBox;
